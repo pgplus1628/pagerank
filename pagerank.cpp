@@ -8,7 +8,7 @@
 DEFINE_string(input, "", "input file path.");
 DEFINE_string(output, "", "output file path.");
 DEFINE_int32(niters, 10, "num iterations.");
-
+DEFINE_bool(dump_edges, false, "dump edges, defautl is false.");
 
 
 class PageRank {
@@ -145,6 +145,12 @@ class PageRank {
     info += "loop time : "  + std::to_string(t4-t3) + " ms.\n";
     info += "iter time : "  + std::to_string( ((double)(t4-t3)) / ((double)(FLAGS_niters)) ) + " ms.\n";
     LOG(INFO) << info;
+
+    if (FLAGS_dump_edges) {
+      std::string fedge = FLAGS_output + ".edges";
+      graph.dump_edges(fedge);
+    }
+
   }
 
 
@@ -164,8 +170,8 @@ int main(int argc, char ** argv) {
   PageRank pagerank(*graph);
 
   pagerank.do_bench(HILBERT);
-  pagerank.do_bench(SRC);
-  pagerank.do_bench(DST);
+  //pagerank.do_bench(SRC);
+  //pagerank.do_bench(DST);
 
   delete graph;
 

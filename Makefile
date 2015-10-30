@@ -1,7 +1,7 @@
 CXX?=g++
 CXXFLAGS?=-std=c++11 -g
-LDFLAGS?=-L/usr/local/lib/ -lglog -lgflags
-INFLAGS?=-I. -I/usr/local/include/
+LDFLAGS?=-L/usr/local/lib -lglog -lgflags -lm
+INFLAGS?=-I. -I/usr/local/include/ -I/usr/include/ 
 
 all : pagerank
 

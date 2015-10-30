@@ -100,4 +100,27 @@ class Graph {
   size_t get_n_vertices() {
     return Uid2id.size();
   }
+
+
+
+  void dump_edges(std::string fname)
+  {
+    std::ofstream ofs(fname.c_str(), std::ios_base::out | std::ios_base::binary);
+
+    for( auto & e : edges) {
+      ofs << e.src << "\t" << e.dst <<"\n";
+    }
+
+    ofs.close();
+  }
+
+
+
+
+
+
+
+
+
+
 };
