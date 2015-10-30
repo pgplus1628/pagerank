@@ -27,6 +27,7 @@ class Graph {
   public :
   std::vector<Edge> edges;
   std::unordered_map<VidType, VidType> Uid2id;
+  std::vector<VidType> LUid2id;
 
   Graph() {
   }
@@ -70,6 +71,13 @@ class Graph {
       edges.emplace_back(src, dst);
     }
     LOG(INFO) << " Load graph fininshed. Number of edges : " << edges.size() << ".";
+
+
+    // construct Luid2id
+    LUid2id.resize(Uid2id.size());
+    for(auto kv : Uid2id) {
+      LUid2id[kv.second] = kv.first;
+    }
     ifs.close();
   }
 

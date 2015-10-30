@@ -1,6 +1,7 @@
 #include "graph.hpp"
 #include "order.hpp"
 #include "ops.hpp"
+#include "misc.hpp"
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 
@@ -27,6 +28,11 @@ class PageRank {
   // -------------/
   // UDF
   // -------------/
+
+  static void init_rank(double& r) {
+    r = 1.0;
+  }
+
   static void reset_rank(double& r) {
     r = 0.0;
   }
@@ -90,7 +96,7 @@ class PageRank {
     rank_vec.resize(nv);
     update_vec.resize(nv);
     // init vec
-    unary_apply<double>(rank_vec, reset_rank);
+    unary_apply<double>(rank_vec, init_rank);
     unary_apply<double>(update_vec, reset_update);
   }
 
@@ -112,7 +118,7 @@ class PageRank {
       LOG(INFO) << " == iter " << it << "  ==";
     }
 
-    dump_vec<double>(FLAGS_output, rank_vec);
+    dump_vec<double>(graph, FLAGS_output, rank_vec);
   }
 
   /*
@@ -120,14 +126,25 @@ class PageRank {
    */
   void do_bench(std::string order) {
     LOG(INFO) << "========================================";
-    LOG(INFO) << "\nPagerank::" << order << " bench Begin.\n";
+    LOG(INFO) << "Pagerank::" << order << " bench Begin.\n";
+
+    int64_t t1, t2, t3, t4;
+    TIMER(t1);
     // resort graph
     graph.sort_edges(order);
+    TIMER(t2);
     // reset state
     reset_state();
+    TIMER(t3);
     // do PageRank
     do_pagerank();
-    LOG(INFO) << "\nPagerank::" << order << " benced OK.\n";
+    TIMER(t4);
+    LOG(INFO) << "Pagerank::" << order << " benced OK.";
+    std::string info = "";
+    info += "\nsort time : "  + std::to_string(t2-t1) + " ms.\n";
+    info += "loop time : "  + std::to_string(t4-t3) + " ms.\n";
+    info += "iter time : "  + std::to_string( ((double)(t4-t3)) / ((double)(FLAGS_niters)) ) + " ms.\n";
+    LOG(INFO) << info;
   }
 
 

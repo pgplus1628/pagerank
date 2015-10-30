@@ -36,10 +36,11 @@ void ternary_apply(std::vector<VT1> &vec1, std::vector<VT2> &vec2, std::vector<V
 }
 
 template<typename VT>
-void dump_vec(std::string fname, std::vector<VT> &vec) {
+void dump_vec(Graph &g, std::string fname, std::vector<VT> &vec) {
   std::ofstream ofs(fname.c_str(), std::ios_base::out | std::ios_base::binary);
+  auto &lid2id = g.LUid2id;
   for(size_t i = 0;i < vec.size();i ++) {
-    ofs  << i << "\t" << vec[i] << "\n";
+    ofs  << lid2id[i] << "\t" << vec[i] << "\n";
   }
   ofs.close();
 }
