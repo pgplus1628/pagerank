@@ -9,6 +9,7 @@ DEFINE_string(input, "", "input file path.");
 DEFINE_string(output, "", "output file path.");
 DEFINE_int32(niters, 10, "num iterations.");
 DEFINE_bool(dump_edges, false, "dump edges, defautl is false.");
+DEFINE_string(order, "hilbert", "order of graph edges. hilbert, src, dst, all.");
 
 
 class PageRank {
@@ -34,7 +35,7 @@ class PageRank {
   }
 
   static void reset_rank(double& r) {
-    r = 0.0;
+    r = 1 - DAMPING_FACTOR;
   }
 
   static void reset_update(double &r) {
@@ -58,7 +59,7 @@ class PageRank {
   }
 
   static void gen_update(double &update, double &rank, double &lab) {
-    update = rank * lab;
+    update = rank * lab * DAMPING_FACTOR;
   }
 
   /*
@@ -69,10 +70,11 @@ class PageRank {
     rank += update;
   }
 
+/*
   static void update(double &rank) {
     rank = 1.0 - DAMPING_FACTOR + DAMPING_FACTOR * (rank);
   }
-
+*/
 
   // --------------/
   // For Benchmark
@@ -113,7 +115,7 @@ class PageRank {
       graph_edge_apply<double, double>(graph, update_vec, rank_vec, acc_update);
 
       // update rank
-      unary_apply<double>(rank_vec, update);
+      //unary_apply<double>(rank_vec, update);
 
       LOG(INFO) << " == iter " << it << "  ==";
     }
@@ -169,9 +171,15 @@ int main(int argc, char ** argv) {
   /* bench order */
   PageRank pagerank(*graph);
 
-  pagerank.do_bench(HILBERT);
-  //pagerank.do_bench(SRC);
-  //pagerank.do_bench(DST);
+  if (FLAGS_order == HILBERT || FLAGS_order == "all") { 
+    pagerank.do_bench(HILBERT);
+  } 
+  if (FLAGS_order == SRC || FLAGS_order == "all") { 
+    pagerank.do_bench(SRC);
+  }
+  if (FLAGS_order == DST || FLAGS_order == "all") { 
+    pagerank.do_bench(DST);
+  }
 
   delete graph;
 

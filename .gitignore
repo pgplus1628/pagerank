@@ -28,5 +28,6 @@
 *.app
 
 # app specific
-pagerank.o
 pagerank
+
+./data

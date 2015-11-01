@@ -1,0 +1,62 @@
+
+twitter_rv perf
+---------------------------------------------------------------------------------
+
+I1031 10:47:19.931692  5801 graph.cpp:14] Graph::loading graph : /scratch1/zork/data/twitter/glab_in/twitter_rv.net
+I1031 11:18:16.836459  5801 graph.cpp:52]  Load graph fininshed. Number of edges : 1468365182.
+I1031 11:18:26.111217  5801 pagerank.cpp:130] ========================================
+I1031 11:18:26.111280  5801 pagerank.cpp:131] Pagerank::hilbert bench Begin.
+I1031 11:18:26.111296  5801 graph.cpp:75]  Graph::nv = 41652230
+I1031 11:18:26.111307  5801 graph.cpp:81]  HilbertOrder::max_n = 67108864
+I1031 11:32:36.502437  5801 pagerank.cpp:120]  == iter 0  ==
+I1031 11:32:46.420593  5801 pagerank.cpp:120]  == iter 1  ==
+I1031 11:32:56.349290  5801 pagerank.cpp:120]  == iter 2  ==
+I1031 11:33:06.270858  5801 pagerank.cpp:120]  == iter 3  ==
+I1031 11:33:16.190805  5801 pagerank.cpp:120]  == iter 4  ==
+I1031 11:33:26.112257  5801 pagerank.cpp:120]  == iter 5  ==
+I1031 11:33:36.035822  5801 pagerank.cpp:120]  == iter 6  ==
+I1031 11:33:45.952589  5801 pagerank.cpp:120]  == iter 7  ==
+I1031 11:33:55.871451  5801 pagerank.cpp:120]  == iter 8  ==
+I1031 11:34:05.789027  5801 pagerank.cpp:120]  == iter 9  ==
+I1031 11:34:31.001627  5801 pagerank.cpp:144] Pagerank::hilbert benced OK.
+I1031 11:34:31.001766  5801 pagerank.cpp:149]
+sort time : 839948 ms.
+loop time : 124432 ms.
+iter time : 12443.200000 ms.
+I1031 11:34:31.001819  5801 pagerank.cpp:130] ========================================
+I1031 11:34:31.001838  5801 pagerank.cpp:131] Pagerank::src bench Begin.
+I1031 11:39:31.085088  5801 pagerank.cpp:120]  == iter 0  ==
+I1031 11:39:48.990942  5801 pagerank.cpp:120]  == iter 1  ==
+I1031 11:40:06.900568  5801 pagerank.cpp:120]  == iter 2  ==
+I1031 11:40:24.814846  5801 pagerank.cpp:120]  == iter 3  ==
+I1031 11:40:42.720094  5801 pagerank.cpp:120]  == iter 4  ==
+I1031 11:41:00.632872  5801 pagerank.cpp:120]  == iter 5  ==
+I1031 11:41:18.547885  5801 pagerank.cpp:120]  == iter 6  ==
+I1031 11:41:36.452484  5801 pagerank.cpp:120]  == iter 7  ==
+I1031 11:41:54.363610  5801 pagerank.cpp:120]  == iter 8  ==
+I1031 11:42:12.277526  5801 pagerank.cpp:120]  == iter 9  ==
+I1031 11:42:37.576524  5801 pagerank.cpp:144] Pagerank::src benced OK.
+I1031 11:42:37.576630  5801 pagerank.cpp:149]
+sort time : 281846 ms.
+loop time : 204414 ms.
+iter time : 20441.400000 ms.
+I1031 11:42:37.576689  5801 pagerank.cpp:130] ========================================
+I1031 11:42:37.576709  5801 pagerank.cpp:131] Pagerank::dst bench Begin.
+I1031 11:48:21.996261  5801 pagerank.cpp:120]  == iter 0  ==
+I1031 11:48:39.021281  5801 pagerank.cpp:120]  == iter 1  ==
+I1031 11:48:56.052649  5801 pagerank.cpp:120]  == iter 2  ==
+I1031 11:49:13.084827  5801 pagerank.cpp:120]  == iter 3  ==
+I1031 11:49:30.111333  5801 pagerank.cpp:120]  == iter 4  ==
+I1031 11:49:47.140672  5801 pagerank.cpp:120]  == iter 5  ==
+I1031 11:50:04.174546  5801 pagerank.cpp:120]  == iter 6  ==
+I1031 11:50:21.201859  5801 pagerank.cpp:120]  == iter 7  ==
+I1031 11:50:38.229976  5801 pagerank.cpp:120]  == iter 8  ==
+I1031 11:50:55.262516  5801 pagerank.cpp:120]  == iter 9  ==
+I1031 11:51:20.465935  5801 pagerank.cpp:144] Pagerank::dst benced OK.
+I1031 11:51:20.466045  5801 pagerank.cpp:149]
+sort time : 327063 ms.
+loop time : 195511 ms.
+iter time : 19551.100000 ms.
+
+
+
